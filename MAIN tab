@@ -10,7 +10,7 @@ return function(Window, player, QuestEvent, quests, RunService)
     -- =======================
     -- Quest Info Section
     -- =======================
-    MainTab:CreateSection("Quest Info", false)
+    MainTab:CreateSection("Quest Info", true)
     local questInfoLabel = MainTab:CreateLabel("Current Level: 0\nCurrent Quest: None | Next Quest: None")
 
     RunService.Heartbeat:Connect(function()
@@ -44,7 +44,7 @@ return function(Window, player, QuestEvent, quests, RunService)
     -- =======================
     -- AutoQuest Section
     -- =======================
-    MainTab:CreateSection("Auto Quests", false)
+    MainTab:CreateSection("Auto Quests", true)
 
     local autoQuestEnabled = false
     local autoQuestLoop
@@ -170,7 +170,7 @@ return function(Window, player, QuestEvent, quests, RunService)
     -- =======================
     -- Misc Section
     -- =======================
-    MainTab:CreateSection("Misc", false)
+    MainTab:CreateSection("Misc", true)
 
     local autoRollEnabled = false
     local autoRollThread
