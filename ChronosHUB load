@@ -1,0 +1,68 @@
+local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
+
+-- Custom Theme
+WindUI:AddTheme({
+    Name = "E-vil Royal",
+    Accent = WindUI:Gradient({
+        ["0"] = { Color = Color3.fromHex("#574094"), Transparency = 0 },
+        ["100"] = { Color = Color3.fromHex("#8b5cf6"), Transparency = 0 },
+    }, { Rotation = 45 }),
+    Dialog = Color3.fromHex("#1a1a1d"),
+    Outline = Color3.fromHex("#FFD700"),
+    Text = Color3.fromHex("#FFFFFF"),
+    Placeholder = Color3.fromHex("#c0a763"),
+    Background = Color3.fromHex("#140a1e"),
+    Button = Color3.fromHex("#292133"),
+    Icon = Color3.fromHex("#FFD700")
+})
+WindUI:SetTheme("E-vil Royal")
+
+-- Main Window
+local Window = WindUI:CreateWindow({
+    Title = "ChronosHUB",
+    Icon = "moon-star",
+    Author = "by @wtfchronic",
+    Folder = "ChronosHUB",
+    Size = UDim2.fromOffset(580, 460),
+    MinSize = Vector2.new(560, 350),
+    MaxSize = Vector2.new(850, 560),
+    Transparent = true,
+    Theme = "E-vil Royal",
+    Resizable = true,
+    SideBarWidth = 200,
+    BackgroundImageTransparency = 0.3,
+    HideSearchBar = false,
+    ScrollBarEnabled = true,
+    User = {
+        Enabled = true,
+        Anonymous = false,
+        Callback = function()
+            print("User button clicked")
+        end,
+    },
+})
+
+-- Edit OpenButton
+Window:EditOpenButton({
+    Title = "ChronosHUB",
+    Icon = "moon",
+    CornerRadius = UDim.new(0,16),
+    StrokeThickness = 2,
+    Color = ColorSequence.new(
+        Color3.fromHex("#574094"),
+        Color3.fromHex("#FFD700")
+    ),
+    OnlyMobile = false,
+    Enabled = true,
+    Draggable = true,
+})
+
+-- Disable Fullscreen Button
+Window:DisableTopbarButtons({"Fullscreen"})
+
+-- Add a version tag above the tab
+Window:Tag({
+    Title = "v1.0.0",
+    Color = Color3.fromHex("#FFD700"),  -- muted purple for subtlety
+    Radius = 15,
+})
