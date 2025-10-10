@@ -1,0 +1,202 @@
+local QuestTab = Window:Tab({
+    Title = "Quests",
+    Icon = "swords", -- optional
+    Locked = false,
+})
+
+local Toggle = QuestTab:Toggle({
+    Title = "Auto-Quest",
+    Desc = "The highest available quest will be started automatically.",
+    Icon = "badge-check",
+    Type = "Checkbox",
+    Default = false,
+    Callback = function(state) 
+        autoQuestEnabled = state
+
+        if state then
+            WindUI:Notify({
+                Title = "Auto-Quest",
+                Content = "Enabled!",
+                Duration = 3,
+                Icon = "badge-plus",
+            })
+            QuestEvent:FireServer({Type = "RemoveQuest"})
+            task.wait(0.1)
+
+            currentHighestQuest = nil  -- Reset tracking for new session
+
+            autoQuestLoop = task.spawn(function()
+                while autoQuestEnabled do
+                    if IsInQuest() then
+                        task.wait(0.1)
+                        continue
+                    end
+
+                    task.wait(0.2)
+
+                    local quest = GetHighestQuest()
+                    if quest then
+                        local isNewQuest = (currentHighestQuest == nil) or (quest.QuestName ~= currentHighestQuest.QuestName)
+                        if isNewQuest then
+                            if currentHighestQuest == nil then
+                                WindUI:Notify({
+                                    Title = "Quest Started",
+                                    Content = "" .. quest.DisplayName,
+                                    Duration = 3,
+                                    Icon = "swords",
+                                })
+                            else
+                                WindUI:Notify({
+                                    Title = "New Quest Unlocked",
+                                    Content = "" .. quest.DisplayName,
+                                    Duration = 3,
+                                    Icon = "swords",
+                                })
+                            end
+                            currentHighestQuest = quest
+                        end
+                        QuestEvent:FireServer({Quest = quest.QuestName, Type = "RepeatQuest"})
+                    end
+
+                    task.wait(0.1)
+                end
+            end)
+        else
+            if autoQuestLoop then
+                task.cancel(autoQuestLoop)
+                autoQuestLoop = nil
+            end
+            QuestEvent:FireServer({Type = "RemoveQuest"})
+            if not isScriptInitialized then
+                WindUI:Notify({
+                    Title = "Auto-Quest",
+                    Content = "Disabled",
+                    Duration = 3,
+                    Icon = "badge-minus",
+                })
+            end
+        end
+    end
+})
+
+QuestTab:Divider()
+
+local SpecificToggle = QuestTab:Toggle({
+    Title = "Auto-Quest (Specific)",
+    Desc = "The quest you select will be started automatically.",
+    Icon = "badge-check",
+    Type = "Checkbox",
+    Default = false,
+    Callback = function(state) 
+        autoStartSpecificEnabled = state
+
+        if state then
+            WindUI:Notify({
+                Title = "Auto-Quest (Specific)",
+                Content = "" .. selectedQuest,
+                Duration = 3,
+                Icon = "badge-plus",
+            })
+            QuestEvent:FireServer({Type = "RemoveQuest"})
+
+            specificQuestConnection = RunService.Heartbeat:Connect(function()
+                if not autoStartSpecificEnabled then return end
+
+                local questFrame = player.PlayerGui:FindFirstChild("Quest") 
+                    and player.PlayerGui.Quest:FindFirstChild("Mission")
+                local inQuest = questFrame and questFrame.Visible or false
+
+                if not inQuest then
+                    local questObj
+                    for _, q in ipairs(Quests) do
+                        if q.DisplayName == selectedQuest then
+                            questObj = q
+                            break
+                        end
+                    end
+                    if questObj then
+                        QuestEvent:FireServer({Quest = questObj.QuestName, Type = "RepeatQuest"})
+                    end
+                end
+            end)
+        else
+            if specificQuestConnection then
+                specificQuestConnection:Disconnect()
+                specificQuestConnection = nil
+            end
+            QuestEvent:FireServer({Type = "RemoveQuest"})
+            if not isScriptInitialized then
+                WindUI:Notify({
+                    Title = "Auto-Quest (Specific)",
+                    Content = "Disabled!",
+                    Duration = 3,
+                    Icon = "badge-minus",
+                })
+            end
+        end
+    end
+})
+
+local questOptions = {}
+for _, q in ipairs(Quests) do
+    table.insert(questOptions, q.DisplayName)
+end
+
+local Dropdown = QuestTab:Dropdown({
+    Title = "Select Quest",
+    Values = questOptions,
+    Value = questOptions[1],
+    Multi = false,
+    AllowNone = false,
+    Callback = function(option) 
+        selectedQuest = option
+    end
+})
+
+QuestTab:Divider()
+
+local Button = QuestTab:Button({
+    Title = "Go to Quest",
+    Justify = "Center",
+    IconAlign = "Right",
+    Icon = "map-pin",
+    Callback = function()
+        if not IsInQuest() then
+            WindUI:Notify({
+                Title = "Cannot Teleport",
+                Content = "No active quests!",
+                Duration = 3,
+                Icon = "badge-x",
+            })
+            return
+        end
+
+        local missionFrame = player.PlayerGui:FindFirstChild("Quest") and player.PlayerGui.Quest:FindFirstChild("Mission")
+        local titleFrame = missionFrame:FindFirstChild("Frame") and missionFrame.Frame:FindFirstChild("Title")
+        if not titleFrame or not titleFrame:IsA("TextLabel") then
+            return
+        end
+
+        local currentQuestName = titleFrame.Text
+
+        local questObj
+        for _, q in ipairs(Quests) do
+            if q.QuestName == currentQuestName then
+                questObj = q
+                break
+            end
+        end
+
+        if questObj and questObj.Pos then
+            if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                player.Character.HumanoidRootPart.CFrame = CFrame.new(questObj.Pos)
+                WindUI:Notify({
+                    Title = "Teleport",
+                    Content = "Teleported to: " .. currentQuestName,
+                    Duration = 3,
+                    Icon = "map-pin",
+                })
+            end
+        end
+    end
+})
