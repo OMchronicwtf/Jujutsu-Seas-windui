@@ -1,6 +1,6 @@
 local QuestTab = Window:Tab({
     Title = "Quests",
-    Icon = "swords", -- optional
+    Icon = "book-open-text", -- optional
     Locked = false,
 })
 
