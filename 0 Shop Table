@@ -1,30 +1,16 @@
 return {
-    CreateStockData = function(Window, player, QuestEvent, quests, RunService, serverEvent, Rayfield)
-        local stockTable = {
-            MV1 = { Name = "Explosive Bomb", Price = "$ 75,000" },
-            MV2 = { Name = "Construction", Price = "$ 150,000" },
-            MV3 = { Name = "Rubber", Price = "$ 200,000" },
-            MV9 = { Name = "Vital Arts", Price = "$ 650,000" },
-            MV8 = { Name = "Turbo Soul", Price = "$ 850,000" },
-            MV14 = { Name = "Sakura Blossom", Price = "$ 950,000" },
-            MV5 = { Name = "Light", Price = "$ 1,250,000" },
-            MV6 = { Name = "Star Guardian", Price = "$ 1,500,000" },
-            MV7 = { Name = "Ice", Price = "$ 1,750,000" },
-            MV15 = { Name = "Flame Breathing", Price = "$ 1,875,000" },
-            MV10 = { Name = "Infinity", Price = "$ 2,150,000" },
-            MV12 = { Name = "Monarch", Price = "$ 2,500,000" },
-            MV11 = { Name = "Vessel", Price = "$ 2,900,000" },
-            MV13 = { Name = "Spectral Reaper", Price = "$ 3,250,000" },
-        }
-
-        local orderedKeys = {
-            "MV1", "MV2", "MV3", "MV9", "MV8", "MV14", "MV5", "MV6", "MV7",
-            "MV15", "MV10", "MV12", "MV11", "MV13"
-        }
-
-        return {
-            StockTable = stockTable,
-            OrderedKeys = orderedKeys
-        }
-    end
+    {ID = "MV1", Name = "Explosive Bomb", Price = "$75,000"},
+    {ID = "MV2", Name = "Construction", Price = "$150,000"},
+    {ID = "MV3", Name = "Rubber", Price = "$200,000"},
+    {ID = "MV9", Name = "Vital Arts", Price = "$650,000"},
+    {ID = "MV8", Name = "Turbo Soul", Price = "$850,000"},
+    {ID = "MV14", Name = "Sakura Blossom", Price = "$950,000"},
+    {ID = "MV5", Name = "Light", Price = "$1,250,000"},
+    {ID = "MV6", Name = "Star Guardian", Price = "$1,500,000"},
+    {ID = "MV7", Name = "Ice", Price = "$1,750,000"},
+    {ID = "MV15", Name = "Flame Breathing", Price = "$1,875,000"},
+    {ID = "MV10", Name = "Infinity", Price = "$2,150,000"},
+    {ID = "MV12", Name = "Monarch", Price = "$2,500,000"},
+    {ID = "MV11", Name = "Vessel", Price = "$2,900,000"},
+    {ID = "MV13", Name = "Spectral Reaper", Price = "$3,250,000"},
 }
