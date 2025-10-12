@@ -21,7 +21,8 @@ return {
     {MinLevel = 700, QuestName = "Quest 19", DisplayName = "Quest 19 (Lv 700)", Pos = Vector3.new(1446.316, 23.847, -1365.978), EnemyName = "Lv700"},
     {MinLevel = 750, QuestName = "Quest 20", DisplayName = "Quest 20 (Lv 750)", Pos = Vector3.new(1429.03, 31.731, -1614.11), EnemyName = "Lv750"},
     {MinLevel = 800, QuestName = "Quest 21", DisplayName = "Quest 21 (Lv 800)", Pos = Vector3.new(1429.03, 31.731, -1614.11), EnemyName = "Lv800"},
-    {MinLevel = 850, QuestName = "Quest 22", DisplayName = "Quest 22 (Lv 850)", Pos = Vector3.new(1429.03, 31.731, -1614.11), EnemyName = "Lv850"},
-    {MinLevel = 900, QuestName = "Quest 23", DisplayName = "Quest 23 (Lv 900)", Pos = Vector3.new(1946.666, 33.704, 685.717), EnemyName = "Lv900"},
-    {MinLevel = 950, QuestName = "Quest 24", DisplayName = "Quest 24 (Lv 950)", Pos = Vector3.new(2085.364, 33.704, 685.717), EnemyName = "Lv950"},
+    {MinLevel = 850, QuestName = "Quest 22", DisplayName = "Quest 22 (Lv 850)", Pos = Vector3.new(1704.9, 44.417, 655.31), EnemyName = "Lv850"},
+    {MinLevel = 900, QuestName = "Quest 23", DisplayName = "Quest 23 (Lv 900)", Pos = Vector3.new(1943.077, 41.902, 686.663), EnemyName = "Lv900"},
+    {MinLevel = 950, QuestName = "Quest 24", DisplayName = "Quest 24 (Lv 950)", Pos = Vector3.new(2099.695, 41.902, 686.663), EnemyName = "Lv950"},
+    {MinLevel = 1000, QuestName = "Quest 25", DisplayName = "Quest 25 (Lv 1000)", Pos = Vector3.new(2082.81, 50.298, 823.769), EnemyName = "1000"},
 }
