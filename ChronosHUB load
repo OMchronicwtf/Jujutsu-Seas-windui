@@ -62,7 +62,7 @@ Window:DisableTopbarButtons({"Fullscreen"})
 
 -- Add a version tag above the tab
 Window:Tag({
-    Title = "v1.0.0",
+    Title = "v2.0.0",
     Color = Color3.fromHex("#FFD700"),  -- muted purple for subtlety
     Radius = 15,
 })
