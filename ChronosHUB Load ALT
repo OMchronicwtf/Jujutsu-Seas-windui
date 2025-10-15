@@ -91,6 +91,6 @@ local ChangelogParagraph = InfoTab:Paragraph({
     Locked = false
 })
 
-
+InfoTab:Select() -- Select Tab
 
 Window:Divider()
