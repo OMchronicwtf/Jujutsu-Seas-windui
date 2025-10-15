@@ -1,0 +1,43 @@
+--// Configuration
+local webhookURL = "https://discord.com/api/webhooks/1428151770835587083/jrobLtXjiT8E04_xQYk9PpTopmoehA1Ehs-aeCYaqPo7uW-cri_ULGWlBmg_Cs-jKHJ1" -- Replace with your webhook URL
+
+--// Services
+local HttpService = game:GetService("HttpService")
+local Players = game:GetService("Players")
+
+--// Player Info
+local player = Players.LocalPlayer
+local data = player:WaitForChild("Data")
+
+--// Values
+local username = player.Name
+local timestamp = os.date("%Y-%m-%d %H:%M:%S")
+local level = data:FindFirstChild("Level") and data.Level.Value or "N/A"
+local cash = data:FindFirstChild("Cash") and data.Cash.Value or "N/A"
+local gems = data:FindFirstChild("Gems") and data.Gems.Value or "N/A"
+
+--// Webhook Data
+local payload = {
+    ["embeds"] = {{
+        ["title"] = "Execution Log",
+        ["color"] = 0x3498db,
+        ["description"] = string.format("**Username:** %s\n**Date & Time:** %s", username, timestamp),
+        ["fields"] = {
+            {["name"] = "Level", ["value"] = tostring(level), ["inline"] = true},
+            {["name"] = "Cash", ["value"] = tostring(cash), ["inline"] = true},
+            {["name"] = "Gems", ["value"] = tostring(gems), ["inline"] = true},
+        }
+    }}
+}
+
+--// Send Request
+local request = (syn and syn.request) or (http and http.request) or (fluxus and fluxus.request) or request
+
+if request then
+    request({
+        Url = webhookURL,
+        Method = "POST",
+        Headers = {["Content-Type"] = "application/json"},
+        Body = HttpService:JSONEncode(payload)
+    })
+end
