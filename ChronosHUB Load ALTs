@@ -73,6 +73,7 @@ local InfoTab = Window:Tab({
     Locked = false
 })
 
+InfoTab:Select()
 
 local WarningParagraph = InfoTab:Paragraph({
     Title = "STOP EXPLOITING IN PUBLIC LOBBIES!",
