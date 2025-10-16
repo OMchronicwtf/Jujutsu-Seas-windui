@@ -82,6 +82,27 @@ local WarningParagraph = InfoTab:Paragraph({
     Locked = false
 })
 
+local DiscordJoinParagraph = InfoTab:Paragraph({
+    Title = "Join my Discord for early access updates!",
+    Desc = "Stay updated with new versions, fixes, and beta features!\n\nClick the button below to copy the invite link!",
+    Locked = false,
+    Buttons = {
+        {
+            Icon = "copy", -- Lucide icon
+            Title = "Copy Invite",
+            Callback = function()
+                setclipboard("https://discord.gg/fu9fH2trGT")
+                WindUI:Notify({
+                    Title = "Copied!",
+                    Content = "Discord invite link has been copied to your clipboard.",
+                    Duration = 5,
+                    Image = "check"
+                })
+            end,
+        }
+    }
+})
+
 local ChangelogSection = InfoTab:Section({
     Title = "Changelogs"
 })
