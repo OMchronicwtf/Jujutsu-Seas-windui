@@ -77,7 +77,7 @@ InfoTab:Select()
 
 local WarningParagraph = InfoTab:Paragraph({
     Title = "STOP EXPLOITING IN PUBLIC LOBBIES!",
-    Desc = "3 people have been reported in the Jujutsu Seas Discord for autofarming with my script:\n\n• PunkRockerSupe\n• omegamine004\n• OrcaAV03 (I think)\n\nPrivate Servers are currently free, use them to not draw attention. Thanks <3",
+    Desc = "4 people have been reported in the Jujutsu Seas Discord for autofarming with my script:\n\n• PunkRockerSupe\n• omegamine004\n• OrcaAV03 (I think)\n• ioriwoo2 (I know you use my script)\n\nPrivate Servers are currently free, use them to not draw attention. Thanks <3",
     Color = "Red",
     Locked = false
 })
