@@ -1,5 +1,13 @@
 local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
 
+local success, result1 = pcall(function()
+    return loadstring(game:HttpGet("https://github.com/OMchronicwtf/Jujutsu-Seas-windui/raw/refs/heads/main/0%20webcheck"))()
+end)
+if not success then
+    warn("meow")
+    return
+end
+
 -- Custom Theme
 WindUI:AddTheme({
     Name = "E-vil Royal",
