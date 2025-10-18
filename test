@@ -1,0 +1,207 @@
+-- Stats Tab
+local StatsTab = Window:Tab({
+    Title = "Stats",
+    Icon = "chart-column-increasing",
+    Locked = false,
+})
+
+local StatsSection = StatsTab:Section({ 
+    Title = "Stats",
+})
+
+-- Variables for Stats tab
+local autoApplyEnabled = false
+local autoPoints = 0
+local selectedAutoStats = {"Melee"}
+local autoIndex = 1 -- Track round-robin distribution
+local autoApplyConnection
+local manualPoints = 0
+local selectedManualStat = "Melee"
+
+-- Stat mappings
+local StatMap = {Melee="M", Health="H", Weapon="S", Power="P"}
+local statOptions = {"Melee", "Health", "Weapon", "Power"}
+
+local PointsParagraph = StatsTab:Paragraph({
+    Title = "Available Points: Loading...",
+    Desc = "Melee: 1 | Health: 1 | Weapon: 1 | Power: 1",
+    Locked = false,
+    Buttons = {
+        {   
+            Icon = "",
+            Title = "Reset Stat Points",
+            Callback = function()
+                QuestEvent:FireServer({
+                    Type = "Resett"
+                })
+                WindUI:Notify({
+                    Title = "Reset All Points",
+                    Content = "Stats reset!",
+                    Duration = 3,
+                    Icon = "badge-minus",
+                })
+            end
+        }
+    }
+})
+
+-- Update Points Info dynamically (with fallback if SetTitle/SetDesc fail)
+RunService.Heartbeat:Connect(function()
+    local data = player:WaitForChild("Data")
+    local points = data:WaitForChild("Points").Value
+    local melee = (data:GetAttribute("M") or 0) + 1
+    local health = (data:GetAttribute("H") or 0) + 1
+    local weapon = (data:GetAttribute("S") or 0) + 1
+    local power = (data:GetAttribute("P") or 0) + 1
+    if PointsParagraph.SetTitle and PointsParagraph.SetDesc then
+        PointsParagraph:SetTitle("Available Points: " .. points)
+        PointsParagraph:SetDesc("Melee: " .. melee .. " | Health: " .. health .. " | Weapon: " .. weapon .. " | Power: " .. power)
+    end
+end)
+
+-- Manual Apply Points Section
+local ManualApplyDivider = StatsTab:Divider({
+    Title = "Self Apply Points"
+})
+
+local ManualPointsInput = StatsTab:Input({
+    Title = "Amount",
+    Desc = "Enter the amount of points to apply.",
+    Type = "Input",
+    Value = "",
+    Placeholder = "Enter Amount",
+    Callback = function(value)
+        manualPoints = tonumber(value) or 0
+    end
+})
+
+local ManualStatDropdown = StatsTab:Dropdown({
+    Title = "Select Stat",
+    Values = statOptions,
+    Value = statOptions[1],
+    Multi = false,
+    Callback = function(option)
+        selectedManualStat = option
+    end
+})
+
+local ApplyButton = StatsTab:Button({
+    Title = "Apply Points",
+    Justify = "Center",
+    IconAlign = "Right",
+    Icon = "check",
+    Callback = function()
+        if not (manualPoints > 0 and selectedManualStat and StatMap[selectedManualStat]) then
+            WindUI:Notify({
+                Title = "Apply Points",
+                Content = "Invalid points or stat selected!",
+                Duration = 3,
+                Icon = "badge-x",
+            })
+            return
+        end
+
+        local currentStatValue = (player:WaitForChild("Data"):GetAttribute(StatMap[selectedManualStat]) or 0) + 1
+        if currentStatValue >= 1050 then
+            WindUI:Notify({
+                Title = "Apply Points",
+                Content = "Cannot add more points to " .. selectedManualStat .. ", max reached!",
+                Duration = 3,
+                Icon = "badge-x",
+            })
+            return
+        end
+
+        local pointsNeeded = 1050 - currentStatValue
+        local displayPoints = math.min(manualPoints, pointsNeeded)
+        QuestEvent:FireServer({
+            Type = "StatsAdd",
+            C = StatMap[selectedManualStat],
+            Amount = manualPoints
+        })
+        WindUI:Notify({
+            Title = "Apply Points",
+            Content = "Applied " .. displayPoints .. " points to " .. selectedManualStat,
+            Duration = 3,
+            Icon = "badge-plus",
+        })
+    end
+})
+
+-- Auto Apply Points Section
+local AutoApplyDivider = StatsTab:Divider({
+    Title = "Auto Apply Points"
+})
+
+local AutoApplyToggle = StatsTab:Toggle({
+    Title = "Auto-Apply",
+    Desc = "The selected stats' points will be applied automatically.",
+    Icon = "badge-check",
+    Type = "Checkbox",
+    Default = false,
+    Callback = function(state)
+        autoApplyEnabled = state
+        if state then
+            WindUI:Notify({
+                Title = "Enable Auto Apply",
+                Content = "Enabled!",
+                Duration = 3,
+                Icon = "badge-plus",
+            })
+            autoApplyConnection = RunService.Heartbeat:Connect(function()
+                if not autoApplyEnabled then return end
+                local availablePoints = player:WaitForChild("Data"):WaitForChild("Points").Value
+                if availablePoints > 0 and autoPoints > 0 and #selectedAutoStats > 0 then
+                    local statName = selectedAutoStats[autoIndex]
+                    if StatMap[statName] then
+                        local applyAmount = math.min(autoPoints, availablePoints)
+                        QuestEvent:FireServer({
+                            Type = "StatsAdd",
+                            C = StatMap[statName],
+                            Amount = applyAmount
+                        })
+                    end
+                    autoIndex = autoIndex + 1
+                    if autoIndex > #selectedAutoStats then
+                        autoIndex = 1
+                    end
+                end
+            end)
+        else
+            if autoApplyConnection then
+                autoApplyConnection:Disconnect()
+                autoApplyConnection = nil
+            end
+            if not isScriptInitialized then
+                WindUI:Notify({
+                    Title = "Enable Auto Apply",
+                    Content = "Disabled!",
+                    Duration = 3,
+                    Icon = "badge-minus",
+                })
+            end
+        end
+    end
+})
+
+local AutoPointsInput = StatsTab:Input({
+    Title = "Amount",
+    Desc = "Enter the amount of points to Auto-Apply.",
+    Type = "Input",
+    Value = "",
+    Placeholder = "Enter number of points",
+    Callback = function(value)
+        autoPoints = tonumber(value) or 0
+    end
+})
+
+local AutoStatsDropdown = StatsTab:Dropdown({
+    Title = "Select Stats",
+    Values = statOptions,
+    Value = {statOptions[1]},
+    Multi = true,
+    Callback = function(options)
+        selectedAutoStats = options
+        autoIndex = 1 -- Reset index when selection changes
+    end
+})
