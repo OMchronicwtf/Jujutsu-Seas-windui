@@ -1,0 +1,84 @@
+return {
+    -- Island 1: Quest NPCs
+    { Name = "Quest Lv.1+", Pos = Vector3.new(-240.63, 8.52, -238.89), Island = "Island 1", Type = "Quest" },
+    { Name = "Quest Lv.10+", Pos = Vector3.new(-385.81, 7.52, -80.32), Island = "Island 1", Type = "Quest" },
+    { Name = "Quest Lv.20+", Pos = Vector3.new(-393.08, 7.44, -168.46), Island = "Island 1", Type = "Quest" },
+    { Name = "Quest Lv.35+", Pos = Vector3.new(-391.10, 7.93, -328.17), Island = "Island 1", Type = "Quest" },
+    { Name = "Quest Lv.50+", Pos = Vector3.new(-453.95, 7.23, -395.40), Island = "Island 1", Type = "Quest" },
+    -- Island 1: Other NPCs (placeholders)
+    { Name = "Amine", Pos = Vector3.new(-277.43, 7.29, -295.80), Island = "Island 1", Type = "Other" },
+    { Name = "Cursed Spear's Seller", Pos = Vector3.new(-390, 7.5, -90), Island = "Island 1", Type = "Other" },
+    { Name = "Frank", Pos = Vector3.new(-96.48, 0.89, -311.59), Island = "Island 1", Type = "Other" },
+    { Name = "Haruto", Pos = Vector3.new(-190.64, 7.20, -314.43), Island = "Island 1", Type = "Other" },
+    { Name = "Home", Pos = Vector3.new(-147.20, 7.32, -246.24), Island = "Island 1", Type = "Other" },
+    { Name = "Katana's Seller", Pos = Vector3.new(-368.44, 7.06, -126.80), Island = "Island 1", Type = "Other" },
+    { Name = "Kuro", Pos = Vector3.new(-200.75, 7.18, -247.30), Island = "Island 1", Type = "Other" },
+    { Name = "Librarian", Pos = Vector3.new(-295.90, 10.72, -216.39), Island = "Island 1", Type = "Other" },
+    { Name = "Ryuk", Pos = Vector3.new(-403.21, 10.84, -292.63), Island = "Island 1", Type = "Other" },
+    { Name = "Ryuk's Brother", Pos = Vector3.new(-196.04, 9.94, -226.87), Island = "Island 1", Type = "Other" },
+    { Name = "Shizuka", Pos = Vector3.new(-426.53, 10.46, -274.46), Island = "Island 1", Type = "Other" },
+    { Name = "The Dealer", Pos = Vector3.new(-332.92, 7.29, -297.93), Island = "Island 1", Type = "Other" },
+    { Name = "The Puncher", Pos = Vector3.new(-242.31, 7.24, -296.74), Island = "Island 1", Type = "Other" },
+    { Name = "Unknown", Pos = Vector3.new(-380.62, 8.16, -233.64), Island = "Island 1", Type = "Other" },      
+    
+    -- Island 2: Quest NPCs
+    { Name = "Quest Lv.75+", Pos = Vector3.new(524.13, 9.43, -422.34), Island = "Island 2", Type = "Quest" },
+    { Name = "Quest Lv.100+", Pos = Vector3.new(620.98, 9.32, -425.36), Island = "Island 2", Type = "Quest" },
+    { Name = "Quest Lv.125+", Pos = Vector3.new(678.63, 21.54, -199.31), Island = "Island 2", Type = "Quest" },
+    { Name = "Quest Lv.150+", Pos = Vector3.new(737.01, 41.50, -297.54), Island = "Island 2", Type = "Quest" },
+    -- Island 2: Other NPCs (placeholders)
+    { Name = "Amine", Pos = Vector3.new(523.76, 9.28, -305.39), Island = "Island 2", Type = "Other" },
+    { Name = "Frank", Pos = Vector3.new(370.05, 3.82, -414.06), Island = "Island 2", Type = "Other" },
+    { Name = "Home", Pos = Vector3.new(464.73, 3.92, -372.69), Island = "Island 2", Type = "Other" },
+    { Name = "Rahumi", Pos = Vector3.new(535.09, 9.23, -347.64), Island = "Island 2", Type = "Other" },
+    { Name = "Renjiro", Pos = Vector3.new(655.65, 21.19, -244.38), Island = "Island 2", Type = "Other" },
+    { Name = "Sword Man", Pos = Vector3.new(545.39, 9.04, -285.46), Island = "Island 2", Type = "Other" },
+    { Name = "The Dealer", Pos = Vector3.new(593.70, 9.39, -350.06), Island = "Island 2", Type = "Other" },
+    { Name = "Unknown", Pos = Vector3.new(553.46, 9.32, -418.06), Island = "Island 2", Type = "Other" }, 
+
+    -- Island 3: Quest NPCs
+    { Name = "Quest Lv.200+", Pos = Vector3.new(467.41, 4.96, 518.84), Island = "Island 3", Type = "Quest" },
+    { Name = "Quest Lv.250+", Pos = Vector3.new(444.70, 4.96, 836.13), Island = "Island 3", Type = "Quest" },
+    { Name = "Quest Lv.300+", Pos = Vector3.new(715.91, 4.96, 746.32), Island = "Island 3", Type = "Quest" },
+    { Name = "Quest Lv.350+", Pos = Vector3.new(724.16, 4.96, 649.31), Island = "Island 3", Type = "Quest" },
+    { Name = "Quest Lv.400+", Pos = Vector3.new(382.52, 4.96, 635.68), Island = "Island 3", Type = "Quest" },
+    { Name = "Quest Lv.450+", Pos = Vector3.new(209.26, 10.19, 660.77), Island = "Island 3", Type = "Quest" },
+    -- Island 3: Other NPCs (placeholders)
+    { Name = "Amine", Pos = Vector3.new(512.41, 4.74, 737.78), Island = "Island 3", Type = "Other" },
+    { Name = "Daichi", Pos = Vector3.new(58.52, 9.92, 836.18), Island = "Island 3", Type = "Other" },
+    { Name = "Frank", Pos = Vector3.new(428.11, 3.82, 436.08), Island = "Island 3", Type = "Other" },
+    { Name = "Home", Pos = Vector3.new(404.30, 4.76, 492.93), Island = "Island 3", Type = "Other" },
+    { Name = "Kisaragi", Pos = Vector3.new(459.35, 4.61, 775.90), Island = "Island 3", Type = "Other" },
+    { Name = "Sales Man", Pos = Vector3.new(835.25, 5.54, 762.33), Island = "Island 3", Type = "Other" },
+    { Name = "The Dealer", Pos = Vector3.new(476.38, 4.72, 712.61), Island = "Island 3", Type = "Other" },
+    { Name = "Unknown", Pos = Vector3.new(516.01, 5.01, 566.40), Island = "Island 3", Type = "Other" },    
+
+    -- Island 4: Quest NPCs
+    { Name = "Quest Lv.500+", Pos = Vector3.new(1035.17, 2.84, -1614.13), Island = "Island 4", Type = "Quest" },
+    { Name = "Quest Lv.550+", Pos = Vector3.new(1033.16, 2.56, -1269.32), Island = "Island 4", Type = "Quest" },
+    { Name = "Quest Lv.600+", Pos = Vector3.new(1328.95, 2.53, -1432.22), Island = "Island 4", Type = "Quest" },
+    { Name = "Quest Lv.650+", Pos = Vector3.new(1342.01, 2.45, -1310.54), Island = "Island 4", Type = "Quest" },
+    { Name = "Quest Lv.700+", Pos = Vector3.new(1489.90, 2.45, -1446.64), Island = "Island 4", Type = "Quest" },
+    { Name = "Quest Lv.750+", Pos = Vector3.new(1367.92, 5.23, -1557.19), Island = "Island 4", Type = "Quest" },
+    -- Island 4: Other NPCs (placeholders)
+    { Name = "Amine", Pos = Vector3.new(962.21, 5.47, -1557.86), Island = "Island 4", Type = "Other" },
+    { Name = "Home", Pos = Vector3.new(963.78, 2.67, -1418.25), Island = "Island 4", Type = "Other" },
+    { Name = "Sad Demon", Pos = Vector3.new(1334.35, 48.82, -1628.15), Island = "Island 4", Type = "Other" },
+    { Name = "The Dealer", Pos = Vector3.new(983.42, 2.49, -1431.91), Island = "Island 4", Type = "Other" },
+    { Name = "The Strong", Pos = Vector3.new(1127.55, 3.35, -1542.87), Island = "Island 4", Type = "Other" },
+    { Name = "Unknown", Pos = Vector3.new(1062.47, 5.42, -1487.07), Island = "Island 4", Type = "Other" },    
+
+    -- Island 5: Quest NPCs
+    { Name = "Quest Lv.800+", Pos = Vector3.new(1238.95, 56.08, -1819.53), Island = "Island 5", Type = "Quest" },
+    { Name = "Quest Lv.850+", Pos = Vector3.new(1779.69, 9.35, 631.89), Island = "Island 5", Type = "Quest" },
+    { Name = "Quest Lv.900+", Pos = Vector3.new(2003.34, 9.39, 697.35), Island = "Island 5", Type = "Quest" },
+    { Name = "Quest Lv.950+", Pos = Vector3.new(2127.56, 9.39, 736.22), Island = "Island 5", Type = "Quest" },
+    { Name = "Quest Lv.1000+", Pos = Vector3.new(2005.35, 9.45, 799.72), Island = "Island 5", Type = "Quest" },
+    -- Island 5: Other NPCs (placeholders)
+    { Name = "Amine", Pos = Vector3.new(1812.48, 9.54, 834.24), Island = "Island 5", Type = "Other" },
+    { Name = "Frank", Pos = Vector3.new(1853.56, 4.48, 450.57), Island = "Island 5", Type = "Other" },
+    { Name = "Home", Pos = Vector3.new(1802.75, 9.38, 667.24), Island = "Island 5", Type = "Other" },
+    { Name = "Shizuka", Pos = Vector3.new(1772.12, 9.32, 853.30), Island = "Island 5", Type = "Other" },
+    { Name = "The Dealer", Pos = Vector3.new(1851.36, 9.42, 641.55), Island = "Island 5", Type = "Other" },
+    { Name = "Unknown", Pos = Vector3.new(1963.10, 9.19, 585.51), Island = "Island 5", Type = "Other" },    
+}
