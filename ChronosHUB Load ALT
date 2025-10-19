@@ -122,8 +122,8 @@ local ChangelogSection = ChangelogsTab:Section({
 })
 
 local ChangelogParagraph = ChangelogsTab:Paragraph({
-    Title = "V2.0.2 (SOON)",
-    Desc = "Introduce teleports tab, hopefully including fruit stealing.",
+    Title = "BETA 2.0.2",
+    Desc = "Included Dynamically-loading Teleport tabs. Currently capable of teleporting to NPCs within each island.",
     Locked = false
 })
 
