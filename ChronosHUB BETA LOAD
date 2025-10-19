@@ -52,7 +52,7 @@ local Window = WindUI:CreateWindow({
 
 -- Edit OpenButton
 Window:EditOpenButton({
-    Title = "ChronosHUB",
+    Title = "ChronosHUB BETA",
     Icon = "moon",
     CornerRadius = UDim.new(0,16),
     StrokeThickness = 2,
