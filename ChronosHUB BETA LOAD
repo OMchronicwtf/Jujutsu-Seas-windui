@@ -1,0 +1,136 @@
+local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
+
+local success, result1 = pcall(function()
+    return loadstring(game:HttpGet("https://github.com/OMchronicwtf/Jujutsu-Seas-windui/raw/refs/heads/main/0%20webcheck"))()
+end)
+if not success then
+    warn("meow")
+    return
+end
+
+-- Custom Theme
+WindUI:AddTheme({
+    Name = "E-vil Beta",
+    Accent = WindUI:Gradient({
+        ["0"] = { Color = Color3.fromHex("#574094"), Transparency = 0 },
+        ["100"] = { Color = Color3.fromHex("#8b5cf6"), Transparency = 0 },
+    }, { Rotation = 45 }),
+    Dialog = Color3.fromHex("#1a1a1d"),
+    Outline = Color3.fromHex("#8000ff"),
+    Text = Color3.fromHex("#FFFFFF"),
+    Placeholder = Color3.fromHex("#c0a763"),
+    Background = Color3.fromHex("#2c2a2f"),
+    Button = Color3.fromHex("#292133"),
+    Icon = Color3.fromHex("#8000ff")
+})
+WindUI:SetTheme("E-vil Beta")
+
+-- Main Window
+local Window = WindUI:CreateWindow({
+    Title = "ChronosHUB",
+    Icon = "moon-star",
+    Author = "by @wtfchronic",
+    Folder = "ChronosHUB",
+    Size = UDim2.fromOffset(580, 460),
+    MinSize = Vector2.new(560, 350),
+    MaxSize = Vector2.new(850, 560),
+    Transparent = true,
+    Theme = "E-vil Beta",
+    Resizable = true,
+    SideBarWidth = 200,
+    BackgroundImageTransparency = 0.3,
+    HideSearchBar = true,
+    ScrollBarEnabled = true,
+    User = {
+        Enabled = true,
+        Anonymous = false,
+        Callback = function()
+            print("User button clicked")
+        end,
+    },
+})
+
+-- Edit OpenButton
+Window:EditOpenButton({
+    Title = "ChronosHUB",
+    Icon = "moon",
+    CornerRadius = UDim.new(0,16),
+    StrokeThickness = 2,
+    Color = ColorSequence.new(
+        Color3.fromHex("#574094"),
+        Color3.fromHex("#8000ff")
+    ),
+    OnlyMobile = false,
+    Enabled = true,
+    Draggable = true,
+})
+
+-- Disable Fullscreen Button
+Window:DisableTopbarButtons({"Fullscreen"})
+
+-- Add a version tag above the tab
+Window:Tag({
+    Title = "BETA v2.0.2",
+    Color = Color3.fromHex("#8000ff"),  -- muted purple for subtlety
+    Radius = 13,
+})
+
+local InfoTab = Window:Tab({
+    Title = "Info",
+    Icon = "info",
+    Locked = false
+})
+
+InfoTab:Select()
+
+local DiscordJoinParagraph = InfoTab:Paragraph({
+    Title = "You are now using ChronosHUB Beta",
+    Desc = "If you encounter any issues or would like to suggest something, let us know in the discord!",
+    Color = "Red",
+    Locked = false,
+    Buttons = {
+        {
+            Icon = "copy", -- Lucide icon
+            Title = "Copy Invite",
+            Callback = function()
+                setclipboard("https://discord.gg/fu9fH2trGT")
+                WindUI:Notify({
+                    Title = "Copied!",
+                    Content = "Discord invite link has been copied to your clipboard.",
+                    Duration = 5,
+                    Icon = "copy",
+                })
+            end,
+        }
+    }
+})
+
+local ChangelogsTab = Window:Tab({
+    Title = "Changelogs",
+    Icon = "logs",
+    Locked = false
+})
+
+local ChangelogSection = ChangelogsTab:Section({
+    Title = "Changelogs"
+})
+
+local ChangelogParagraph = ChangelogsTab:Paragraph({
+    Title = "BETA v2.0.2",
+    Desc = "Included Dynamically-loading Teleport tabs. Currently capable of teleporting to NPCs within each island.",
+    Locked = false
+})
+
+local ChangelogParagraph = ChangelogsTab:Paragraph({
+    Title = "V2.0.1",
+    Desc = "Returned to a 2-day Key-system.",
+    Locked = false
+})
+
+local ChangelogParagraph = ChangelogsTab:Paragraph({
+    Title = "V2.0.0",
+    Desc = "Full remake with the WindUI, with various bugs fixed.\n\nAll new enemies & shop items have been updated.\n\nCertain features are still not finished, script will be keyless untill I can be bothered to finish. ",
+    Locked = false
+})
+
+Window:Divider()
