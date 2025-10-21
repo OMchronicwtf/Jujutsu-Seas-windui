@@ -15,6 +15,10 @@ WindUI:AddTheme({
         ["0"] = { Color = Color3.fromHex("#1e055a"), Transparency = 0 },
         ["100"] = { Color = Color3.fromHex("#140a1e"), Transparency = 0 },
     }, { Rotation = 45 }),
+    Background = WindUI:Gradient({
+        ["0"] = { Color = Color3.fromHex("#1e055a"), Transparency = 0 },
+        ["100"] = { Color = Color3.fromHex("#140a1e"), Transparency = 0 },
+    }, { Rotation = 45 }), -- Added to ensure gradient applies to window background
     Dialog = Color3.fromHex("#1a1a1d"),
     Outline = Color3.fromHex("#FFD700"),
     Text = Color3.fromHex("#FFFFFF"),
