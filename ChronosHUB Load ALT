@@ -48,7 +48,7 @@ local Window = WindUI:CreateWindow({
         Enabled = true,
         Anonymous = false,
         Callback = function()
-            print("User button clicked")
+            print("meow meoww 😼")
         end,
     },
 })
