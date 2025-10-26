@@ -12,12 +12,12 @@ end
 WindUI:AddTheme({
     Name = "E-vil Royal",
     Accent = WindUI:Gradient({
-        ["0"] = { Color = Color3.fromHex("#1e055a"), Transparency = 0 },
-        ["100"] = { Color = Color3.fromHex("#140a1e"), Transparency = 0 },
+        ["0"] = { Color = Color3.fromHex("#360273"), Transparency = 0 },
+        ["100"] = { Color = Color3.fromHex("#042444"), Transparency = 0 },
     }, { Rotation = 45 }),
     Background = WindUI:Gradient({
-        ["0"] = { Color = Color3.fromHex("#1e055a"), Transparency = 0 },
-        ["100"] = { Color = Color3.fromHex("#140a1e"), Transparency = 0 },
+        ["0"] = { Color = Color3.fromHex("#360273"), Transparency = 0 },
+        ["100"] = { Color = Color3.fromHex("#042444"), Transparency = 0 },
     }, { Rotation = 45 }), -- Added to ensure gradient applies to window background
     Dialog = Color3.fromHex("#1a1a1d"),
     Outline = Color3.fromHex("#FFD700"),
@@ -73,7 +73,7 @@ Window:DisableTopbarButtons({"Fullscreen"})
 
 -- Add a version tag above the tab
 Window:Tag({
-    Title = "v2.0.1",
+    Title = "v2.2.0",
     Color = Color3.fromHex("#FFD700"),  -- muted purple for subtlety
     Radius = 13,
 })
@@ -125,13 +125,19 @@ local ChangelogSection = ChangelogsTab:Section({
 })
 
 local ChangelogParagraph = ChangelogsTab:Paragraph({
-    Title = "BETA 2.0.2",
-    Desc = "Included Dynamically-loading Teleport tabs. Currently capable of teleporting to NPCs within each island.",
+    Title = "BETA 1",
+    Desc = "Included Dynamically-loading Teleport tabs. Currently capable of teleporting to NPCs within each island.\n\nCurrently does not cover version 2.20",
     Locked = false
 })
 
 local ChangelogParagraph = ChangelogsTab:Paragraph({
-    Title = "V2.0.1",
+    Title = "V2.2.0",
+    Desc = "Added 'Auto-Apply (Smart)' to the Stats Tab.\n\nFixed Semantic Versioning",
+    Locked = false
+})
+
+local ChangelogParagraph = ChangelogsTab:Paragraph({
+    Title = "V2.1.0",
     Desc = "Returned to a 2-day Key-system.",
     Locked = false
 })
