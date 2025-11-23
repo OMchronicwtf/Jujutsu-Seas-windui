@@ -14,4 +14,5 @@ return {
     {ID = "MV11", Name = "Vessel", Price = 2900000},
     {ID = "MV13", Name = "Spectral Reaper", Price = 3250000},
     {ID = "MV16", Name = "Moon Breathing", Price = 4000000},
+    {ID = "MV20", Name = "Abyss Thread", Price = 4500000},
 }
