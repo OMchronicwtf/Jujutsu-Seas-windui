@@ -3094,12 +3094,6 @@ local function addConfigTab(winAPI)
 end
 
 
--- ============================================================
--- CreateWindow wrapper
--- Runs after extendWindow (Part 2) to attach ConfigManager
--- and add :ConfigTab() to the window API.
--- ============================================================
-
 local _origCreateWindow = ChronosUI.CreateWindow
 
 function ChronosUI:CreateWindow(opts)
@@ -3114,60 +3108,4 @@ function ChronosUI:CreateWindow(opts)
     return winAPI
 end
 
--- ============================================================
--- MERGE GUIDE  (exact changes required in Part 1)
--- ============================================================
---
--- 1. makeTabAPI signature — add _winRef parameter:
---
---    BEFORE:  local function makeTabAPI(tabFrame, theme, fonts)
---    AFTER:   local function makeTabAPI(tabFrame, theme, fonts, _winRef)
---
--- 2. makeTabAPI:Section() — pass _winRef to the recursive call:
---
---    BEFORE:  local subAPI = makeTabAPI(sectionCard, theme, fonts)
---    AFTER:   local subAPI = makeTabAPI(sectionCard, theme, fonts, _winRef)
---
--- 3. End of makeTabAPI — call extendTabAPI before returning:
---    (add this two lines before `return tabAPI`)
---
---    if extendTabAPI then
---        extendTabAPI(tabAPI, theme, fonts, _winRef)
---    end
---
--- 4. winAPI:Tab() call site — pass winAPI as 4th arg:
---
---    BEFORE:  local tabAPI = makeTabAPI(tabFrame, T, F)
---    AFTER:   local tabAPI = makeTabAPI(tabFrame, T, F, winAPI)
---
--- 5. After `local SidebarTop = H.scrollFrame(...)` in Part 1,
---    add this line to the winAPI table block:
---
---    winAPI._SidebarTop = SidebarTop
---    winAPI._flags      = {}
---    winAPI._suppressCallbacks = false
---
--- 6. At the very end of CreateWindow, just before `return winAPI`:
---
---    if extendWindow then
---        extendWindow(winAPI, T, F, ScreenGui, Main, Content, TopBar)
---    end
---
--- 7. Remove the `return ChronosUI` at the bottom of Part 1 and
---    the "END OF PART 1" comment block.  Part 3 adds the final
---    `return ChronosUI`.
---
--- ============================================================
--- END OF PART 2
--- Part 3 adds: ConfigManager, Window:ConfigTab(), return ChronosUI
--- ============================================================
-
--- ============================================================
--- END OF PART 1
--- Part 2 will add:
---   Dropdown, Input, Keybind, ToggleKeybind,
---   Progress, LiveStats (stat bars with icons),
---   HStack, VStack, Group (horizontal element grouping),
---   Config system (save/load flags),
---   and full example usage script.
--- ============================================================
+return ChronosUI
